@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions - CVSU Key Admin</title>
+    <link rel="stylesheet" href="../CSS/transactions.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <img src="../assets/Cavite_State_University_(CvSU).png" alt="CvSU Logo" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-title">DATABASE</span>
+                    <span class="logo-subtitle">Admin Panel</span>
+                </div>
+            </div>
+        </div>
+        
+        <ul class="sidebar-menu">
+            <li class="menu-item" data-section="dashboard">
+                <a href="dashboard.html">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="menu-item" data-section="students">
+                <a href="students.html">
+                    <i class="fas fa-users"></i>
+                    <span>Student Tracker</span>
+                </a>
+            </li>
+            <li class="menu-item" data-section="funding">
+                <a href="NFC_E-Wallet_Funding.html">
+                    <i class="fas fa-wallet"></i>
+                    <span>NFC E-Wallet Funding</span>
+                </a>
+            </li>
+            <li class="menu-item" data-section="rooms">
+                <a href="rooms.html">
+                    <i class="fas fa-door-open"></i>
+                    <span>Room Management</span>
+                </a>
+            </li>
+            <li class="menu-item" data-section="payments">
+                <a href="REGISTRAR.html">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <span>REGISTRAR</span>
+                </a>
+            </li>
+            <li class="menu-item active" data-section="transactions">
+                <a href="transactions.html">
+                    <i class="fas fa-list-alt"></i>
+                    <span>Transactions</span>
+                </a>
+            </li>
+            <li class="menu-item" data-section="settings">
+                <a href="settings.html">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div class="sidebar-footer">
+            <div class="admin-profile">
+                <img src="../assets/admin.png" alt="Admin" class="profile-img">
+                <div class="profile-info">
+                    <span class="name">Admin User</span>
+                    <span class="role">System Administrator</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title gradient-text">
+                    <i class="fas fa-list-alt"></i>
+                    CVSU Transaction History
+                </h1>
+            </div>
+            <div class="header-right">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search transactions...">
+                </div>
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                </button>
+                <button class="user-menu-btn">
+                    <i class="fas fa-user"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Transaction History Section -->
+            <section id="transactions-section" class="content-section">
+                <div class="section-header">
+                    <h2>Transaction History</h2>
+                    <div class="section-actions">
+                        <button class="btn-secondary">
+                            <i class="fas fa-download"></i>
+                            Export History
+                        </button>
+                    </div>
+                </div>
+
+                <div class="transaction-filters">
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <label>Date Range:</label>
+                            <input type="date" class="filter-input" value="2025-12-01">
+                            <span>to</span>
+                            <input type="date" class="filter-input" value="2025-12-02">
+                        </div>
+                        <div class="filter-group">
+                            <label>Transaction Type:</label>
+                            <select class="filter-select">
+                                <option>All Types</option>
+                                <option>Payment</option>
+                                <option>Reload</option>
+                                <option>Transfer</option>
+                                <option>Refund</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Service:</label>
+                            <select class="filter-select">
+                                <option>All Campus Activities</option>
+                                <option>Tuition Payment</option>
+                                <option>Cafeteria Purchase</option>
+                                <option>Library Book Borrow</option>
+                                <option>Library Book Return</option>
+                                <option>Printing Services</option>
+                                <option>ScieCal Renting</option>
+                                <option>Lab Gown Renting</option>
+                                <option>Card Reload</option>
+                            </select>
+                        </div>
+                        <button class="btn-filter">Apply Filters</button>
+                    </div>
+                </div>
+
+                <div class="transaction-history-table">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Transaction ID</th>
+                                <th>Date & Time</th>
+                                <th>Student</th>
+                                <th>Service</th>
+                                <th>Type</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="transaction-id">#TXN-789012</td>
+                                <td>Dec 2, 2025 10:30 AM</td>
+                                <td>
+                                    <div class="student-info">
+                                        <img src="../assets/student avatar.jpg" alt="Student">
+                                        <div>
+                                            <span class="student-name">Yuji Lowe</span>
+                                            <span class="student-id">2021-0002</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="service-info">
+                                        <i class="fas fa-book"></i>
+                                        <span>Library Book Borrow</span>
+                                    </div>
+                                </td>
+                                <td><span class="transaction-type borrow">Borrow</span></td>
+                                <td class="amount">₱0.00</td>
+                                <td><span class="transaction-status completed">Completed</span></td>
+                                <td>
+                                    <button class="btn-transaction-action view">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="transaction-id">#TXN-789013</td>
+                                <td>Dec 2, 2025 9:45 AM</td>
+                                <td>
+                                    <div class="student-info">
+                                        <img src="../assets/student avatar.jpg" alt="Student">
+                                        <div>
+                                            <span class="student-name">Prince Carl Nagtalon</span>
+                                            <span class="student-id">2021-0001</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="service-info">
+                                        <i class="fas fa-utensils"></i>
+                                        <span>Cafeteria Purchase</span>
+                                    </div>
+                                </td>
+                                <td><span class="transaction-type payment">Payment</span></td>
+                                <td class="amount">₱125.00</td>
+                                <td><span class="transaction-status completed">Completed</span></td>
+                                <td>
+                                    <button class="btn-transaction-action view">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="transaction-id">#TXN-789014</td>
+                                <td>Dec 2, 2025 8:20 AM</td>
+                                <td>
+                                    <div class="student-info">
+                                        <img src="../assets/student avatar.jpg" alt="Student">
+                                        <div>
+                                            <span class="student-name">Justine Lawrence Coronel</span>
+                                            <span class="student-id">2021-0003</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="service-info">
+                                        <i class="fas fa-calculator"></i>
+                                        <span>ScieCal Renting</span>
+                                    </div>
+                                </td>
+                                <td><span class="transaction-type payment">Payment</span></td>
+                                <td class="amount">₱50.00</td>
+                                <td><span class="transaction-status completed">Completed</span></td>
+                                <td>
+                                    <button class="btn-transaction-action view">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="transaction-id">#TXN-789015</td>
+                                <td>Dec 1, 2025 4:15 PM</td>
+                                <td>
+                                    <div class="student-info">
+                                        <img src="../assets/student avatar.jpg" alt="Student">
+                                        <div>
+                                            <span class="student-name">Jazz Thine Mark Lee</span>
+                                            <span class="student-id">2021-0004</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="service-info">
+                                        <i class="fas fa-wallet"></i>
+                                        <span>Card Reload</span>
+                                    </div>
+                                </td>
+                                <td><span class="transaction-type reload">Reload</span></td>
+                                <td class="amount">₱500.00</td>
+                                <td><span class="transaction-status completed">Completed</span></td>
+                                <td>
+                                    <button class="btn-transaction-action view">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="transaction-id">#TXN-789016</td>
+                                <td>Dec 1, 2025 2:30 PM</td>
+                                <td>
+                                    <div class="student-info">
+                                        <img src="../assets/student avatar.jpg" alt="Student">
+                                        <div>
+                                            <span class="student-name">Yuji Lowe</span>
+                                            <span class="student-id">2021-0005</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="service-info">
+                                        <i class="fas fa-print"></i>
+                                        <span>Printing Services</span>
+                                    </div>
+                                </td>
+                                <td><span class="transaction-type payment">Payment</span></td>
+                                <td class="amount">₱15.00</td>
+                                <td><span class="transaction-status completed">Completed</span></td>
+                                <td>
+                                    <button class="btn-transaction-action view">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination">
+                    <button class="pagination-btn">
+                        <i class="fas fa-chevron-left"></i>
+                        Previous
+                    </button>
+                    <span class="pagination-info">Showing 1-5 of 1,247 transactions</span>
+                    <button class="pagination-btn">
+                        Next
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // Basic JavaScript for responsive sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarToggle = document.querySelector('.sidebar-toggle');
+            const sidebar = document.querySelector('.sidebar');
+            
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('open');
+                });
+            }
+        });
+    </script>
+    <script src="../script.js"></script>
+</body>
+</html>

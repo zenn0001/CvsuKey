@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Tracker - CVSU Key Admin</title>
+    <link rel="stylesheet" href="../CSS/students.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <img src="../assets/Cavite_State_University_(CvSU).png" alt="CvSU Logo" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-title">DATABASE</span>
+                    <span class="logo-subtitle">Admin Panel</span>
+                </div>
+            </div>
+        </div>
+        
+        <ul class="sidebar-menu">
+            <li class="menu-item" data-section="dashboard">
+                <a href="dashboard.html">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="menu-item active" data-section="students">
+                <a href="students.html">
+                    <i class="fas fa-users"></i>
+                    <span>Student Tracker</span>
+                </a>
+            </li>
+            <li class="menu-item" data-section="funding">
+                <a href="NFC_E-Wallet_Funding.html">
+                    <i class="fas fa-wallet"></i>
+                    <span>NFC E-Wallet Funding</span>
+                </a>
+            </li>
+            <li class="menu-item" data-section="rooms">
+                <a href="rooms.html">
+                    <i class="fas fa-door-open"></i>
+                    <span>Room Management</span>
+                </a>
+            </li>
+            <li class="menu-item" data-section="payments">
+                <a href="REGISTRAR.html">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <span>REGISTRAR</span>
+                </a>
+            </li>
+            <li class="menu-item" data-section="transactions">
+                <a href="transactions.html">
+                    <i class="fas fa-list-alt"></i>
+                    <span>Transactions</span>
+                </a>
+            </li>
+            <li class="menu-item" data-section="settings">
+                <a href="settings.html">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div class="sidebar-footer">
+            <div class="admin-profile">
+                <img src="../assets/admin.png" alt="Admin" class="profile-img">
+                <div class="profile-info">
+                    <span class="name">Admin User</span>
+                    <span class="role">System Administrator</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title gradient-text">
+                    <i class="fas fa-users"></i>
+                    CVSU Student Tracker
+                </h1>
+            </div>
+            <div class="header-right">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search students...">
+                </div>
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">5</span>
+                </button>
+                <div class="user-menu">
+                    <img src="../assets/admin.png" alt="Admin" class="user-avatar">
+                    <span class="user-name">Admin</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <div class="content-area">
+            <div class="section-header">
+                <h2>Student Tracker</h2>
+                <div class="section-actions">
+                    <button class="btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Add Student
+                    </button>
+                    <button class="btn-secondary">
+                        <i class="fas fa-download"></i>
+                        Export Data
+                    </button>
+                </div>
+            </div>
+
+            <!-- Student Stats -->
+            <div class="student-stats-grid">
+                <div class="student-stat-card">
+                    <div class="student-stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="student-stat-info">
+                        <h3>3,240</h3>
+                        <p>Total Students</p>
+                    </div>
+                </div>
+                <div class="student-stat-card">
+                    <div class="student-stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="student-stat-info">
+                        <h3 id="present-count">124</h3>
+                        <p>Present Today</p>
+                        <small id="current-datetime" class="datetime-display"></small>
+                    </div>
+                </div>
+                <div class="student-stat-card">
+                    <div class="student-stat-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <div class="student-stat-info">
+                        <h3>2,890</h3>
+                        <p>Validated Students</p>
+                    </div>
+                </div>
+                <div class="student-stat-card">
+                    <div class="student-stat-icon">
+                        <i class="fas fa-user-clock"></i>
+                    </div>
+                    <div class="student-stat-info">
+                        <h3>45</h3>
+                        <p>Pending Validation</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Activities Section -->
+            <div class="activities-section">
+                <div class="section-title">
+                    <h3>Recent Student Activities</h3>
+                    <div class="activity-filters">
+                        <button class="activity-filter active" data-filter="all">All</button>
+                        <button class="activity-filter" data-filter="gate">Gate Access</button>
+                        <button class="activity-filter" data-filter="payment">Payments</button>
+                        <button class="activity-filter" data-filter="library">Library</button>
+                    </div>
+                </div>
+                <div class="activities-feed">
+                    <div class="activity-item">
+                        <div class="activity-icon gate">
+                            <i class="fas fa-door-open"></i>
+                        </div>
+                        <div class="activity-details">
+                            <div class="activity-header">
+                                <span class="student-name">Yuji Lowe</span>
+                                <span class="activity-time">2 min ago</span>
+                            </div>
+                            <p class="activity-desc">Entered main gate using NFC card</p>
+                            <span class="student-course">BSIT 3A - 2021-0001</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon payment">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div class="activity-details">
+                            <div class="activity-header">
+                                <span class="student-name">Prince Carl Nagtalon</span>
+                                <span class="activity-time">5 min ago</span>
+                            </div>
+                            <p class="activity-desc">Made payment at cafeteria - ₱125.50</p>
+                            <span class="student-course">BSCS 2B - 2021-0002</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon library">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="activity-details">
+                            <div class="activity-header">
+                                <span class="student-name">Justine Lawrence Coronel</span>
+                                <span class="activity-time">12 min ago</span>
+                            </div>
+                            <p class="activity-desc">Borrowed book from library</p>
+                            <span class="student-course">BSCE 4A - 2021-0003</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon gate">
+                            <i class="fas fa-door-open"></i>
+                        </div>
+                        <div class="activity-details">
+                            <div class="activity-header">
+                                <span class="student-name">Jazz Thine Mark Lee</span>
+                                <span class="activity-time">18 min ago</span>
+                            </div>
+                            <p class="activity-desc">Exited campus through main gate</p>
+                            <span class="student-course">BSIT 1B - 2021-0004</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Student Table -->
+            <div class="data-table">
+                <table class="students-table">
+                    <thead>
+                        <tr>
+                            <th>Student</th>
+                            <th>Student ID</th>
+                            <th>Course</th>
+                            <th>Balance</th>
+                            <th>Recent Activity</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="student-info">
+                                    <img src="../assets/student avatar.jpg" alt="Student" class="student-avatar">
+                                    <span>Yuji Lowe</span>
+                                </div>
+                            </td>
+                            <td>2021-0001</td>
+                            <td>BSIT 3A</td>
+                            <td class="balance positive">₱1,250.00</td>
+                            <td class="recent-activity">Entered main gate - 2 min ago</td>
+                            <td><span class="status-badge active">Active</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-action view">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-action edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-action delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="student-info">
+                                    <img src="../assets/student avatar.jpg" alt="Student" class="student-avatar">
+                                    <span>Prince Carl Nagtalon</span>
+                                </div>
+                            </td>
+                            <td>2021-0002</td>
+                            <td>BSCS 2B</td>
+                            <td class="balance positive">₱890.50</td>
+                            <td class="recent-activity">Cafeteria payment - 5 min ago</td>
+                            <td><span class="status-badge active">Active</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-action view">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-action edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-action delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="student-info">
+                                    <img src="../assets/student avatar.jpg" alt="Student" class="student-avatar">
+                                    <span>Justine Lawrence Coronel</span>
+                                </div>
+                            </td>
+                            <td>2021-0003</td>
+                            <td>BSCE 4A</td>
+                            <td class="balance positive">₱2,150.75</td>
+                            <td class="recent-activity">Library book borrowed - 12 min ago</td>
+                            <td><span class="status-badge not-validated">Not Validated</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-action view">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-action edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-action delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="student-info">
+                                    <img src="../assets/student avatar.jpg" alt="Student" class="student-avatar">
+                                    <span>Jazz Thine Mark Lee</span>
+                                </div>
+                            </td>
+                            <td>2021-0004</td>
+                            <td>BSIT 1B</td>
+                            <td class="balance positive">₱675.25</td>
+                            <td class="recent-activity">Exited main gate - 18 min ago</td>
+                            <td><span class="status-badge not-validated">Not Validated</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-action view">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-action edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-action delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="table-footer">
+                    <button class="btn-view-more">
+                        <i class="fas fa-chevron-right"></i>
+                        View More
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        // Update current date and time for Present Today card
+        function updateDateTime() {
+            const now = new Date();
+            const options = {
+                weekday: 'short',
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            };
+            const dateTimeString = now.toLocaleDateString('en-US', options);
+            const datetimeElement = document.getElementById('current-datetime');
+            if (datetimeElement) {
+                datetimeElement.textContent = dateTimeString;
+            }
+        }
+
+        // Update immediately and then every minute
+        updateDateTime();
+        setInterval(updateDateTime, 60000);
+    </script>
+    <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CVSU Key Admin</title>
+    <link rel="stylesheet" href="../CSS/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <img src="../assets/Cavite_State_University_(CvSU).png" alt="CvSU Logo" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-title">DATABASE</span>
+                    <span class="logo-subtitle">Admin Panel</span>
+                </div>
+            </div>
+        </div>
+        
+        <ul class="sidebar-menu">
+            <li class="menu-item active" data-section="dashboard">
+                <a href="dashboard.html">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="menu-item" data-section="students">
+                <a href="students.html">
+                    <i class="fas fa-users"></i>
+                    <span>Student Tracker</span>
+                </a>
+            </li>
+            <li class="menu-item" data-section="funding">
+                <a href="NFC_E-Wallet_Funding.html">
+                    <i class="fas fa-wallet"></i>
+                    <span>NFC E-Wallet Funding</span>
+                </a>
+            </li>
+            <li class="menu-item" data-section="rooms">
+                <a href="rooms.html">
+                    <i class="fas fa-door-open"></i>
+                    <span>Room Management</span>
+                </a>
+            </li>
+            <li class="menu-item" data-section="payments">
+                <a href="REGISTRAR.html">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <span>REGISTRAR</span>
+                </a>
+            </li>
+            <li class="menu-item" data-section="transactions">
+                <a href="transactions.html">
+                    <i class="fas fa-list-alt"></i>
+                    <span>Transactions</span>
+                </a>
+            </li>
+            <li class="menu-item" data-section="settings">
+                <a href="settings.html">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div class="sidebar-footer">
+            <div class="admin-profile">
+                <img src="../assets/admin.png" alt="Admin" class="profile-img">
+                <div class="profile-info">
+                    <span class="name">Admin User</span>
+                    <span class="role">System Administrator</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title gradient-text">
+                    <i class="fas fa-leaf"></i>
+                    CVSU Key Dashboard 
+                </h1>
+            </div>
+            <div class="header-right">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">5</span>
+                </button>
+                <div class="user-menu">
+                    <img src="../assets/admin.png" alt="Admin" class="user-avatar">
+                    <span class="user-name">Admin</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="content-area">
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>3,500</h3>
+                        <p>Active Student IDs</p>
+                        <span class="stat-change positive">+1.8%</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-door-open"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>1,245</h3>
+                        <p>Gate Access Taps Today</p>
+                        <span class="stat-change positive">+8.4%</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>287</h3>
+                        <p>Library Verifications Today</p>
+                        <span class="stat-change positive">+5.2%</span>
+                    </div>
+                </div>
+                <div class="stat-card room-status">
+                    <div class="stat-icon">
+                        <i class="fas fa-door-open"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="room-slash-display">
+                            <span class="occupied-count">22</span>
+                            <span class="slash">/</span>
+                            <span class="available-count">13</span>
+                        </div>
+                        <p>Occupied / Available Rooms</p>
+                        <span class="stat-change positive">Total: 35</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts and Recent Activity -->
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-title-section">
+                            <h3>Gate Access Taps by Hour</h3>
+                            <div class="card-timestamp">
+                                <i class="fas fa-clock"></i>
+                                <span id="current-datetime">December 2, 2025 - 2:45 PM</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-secondary">View All</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="transactionChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>Recent Access Events</h3>
+                    </div>
+                    <div class="transaction-list">
+                        <div class="transaction-item">
+                            <div class="transaction-icon success">
+                                <i class="fas fa-door-open"></i>
+                            </div>
+                            <div class="transaction-details">
+                                <p class="transaction-title">Gate Access</p>
+                                <p class="transaction-student">Yuji Lowe - 2021-0001</p>
+                                <p class="transaction-time">Main Entrance - 2:45 PM</p>
+                            </div>
+                            <div class="transaction-status granted">GRANTED</div>
+                        </div>
+                        <div class="transaction-item">
+                            <div class="transaction-icon success">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <div class="transaction-details">
+                                <p class="transaction-title">Library Verification</p>
+                                <p class="transaction-student">Prince Carl Nagtalon - 2021-0002</p>
+                                <p class="transaction-time">Library Entrance - 2:42 PM</p>
+                            </div>
+                            <div class="transaction-status granted">GRANTED</div>
+                        </div>
+                        <div class="transaction-item">
+                            <div class="transaction-icon success">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <div class="transaction-details">
+                                <p class="transaction-title">E-Wallet Payment</p>
+                                <p class="transaction-student">Justine Lawrence Coronel - 2021-0003</p>
+                                <p class="transaction-time">Cafeteria POS - 2:38 PM</p>
+                            </div>
+                            <div class="transaction-status granted">₱125.50</div>
+                        </div>
+                        <div class="transaction-item">
+                            <div class="transaction-icon warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="transaction-details">
+                                <p class="transaction-title">Access Denied</p>
+                                <p class="transaction-student">Unknown ID - Invalid</p>
+                                <p class="transaction-time">Gate B - 2:35 PM</p>
+                            </div>
+                            <div class="transaction-status denied">DENIED</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Chart initialization
+        const ctx = document.getElementById('transactionChart').getContext('2d');
+        const transactionChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['6 AM', '8 AM', '10 AM', '12 PM', '2 PM', '4 PM', '6 PM'],
+                datasets: [{
+                    label: 'Gate Access Taps',
+                    data: [25, 89, 156, 245, 198, 267, 178],
+                    borderColor: '#22c55e',
+                    backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Update current datetime
+        function updateDateTime() {
+            const now = new Date();
+            const options = { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric', 
+                hour: 'numeric', 
+                minute: '2-digit',
+                hour12: true
+            };
+            document.getElementById('current-datetime').textContent = now.toLocaleDateString('en-US', options);
+        }
+
+        updateDateTime();
+        setInterval(updateDateTime, 60000); // Update every minute
+    </script>
+    <script src="../script.js"></script>
+</body>
+</html>

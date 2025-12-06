@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - CVSU Key Admin</title>
+    <link rel="stylesheet" href="../CSS/settings.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <img src="../assets/Cavite_State_University_(CvSU).png" alt="CvSU Logo" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-title">DATABASE</span>
+                    <span class="logo-subtitle">Admin Panel</span>
+                </div>
+            </div>
+        </div>
+        
+        <ul class="sidebar-menu">
+            <li class="menu-item" data-section="dashboard">
+                <a href="dashboard.html">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="menu-item" data-section="students">
+                <a href="students.html">
+                    <i class="fas fa-users"></i>
+                    <span>Student Tracker</span>
+                </a>
+            </li>
+            <li class="menu-item" data-section="funding">
+                <a href="NFC_E-Wallet_Funding.html">
+                    <i class="fas fa-wallet"></i>
+                    <span>NFC E-Wallet Funding</span>
+                </a>
+            </li>
+            <li class="menu-item" data-section="rooms">
+                <a href="rooms.html">
+                    <i class="fas fa-door-open"></i>
+                    <span>Room Management</span>
+                </a>
+            </li>
+            <li class="menu-item" data-section="payments">
+                <a href="REGISTRAR.html">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <span>REGISTRAR</span>
+                </a>
+            </li>
+            <li class="menu-item" data-section="transactions">
+                <a href="transactions.html">
+                    <i class="fas fa-list-alt"></i>
+                    <span>Transactions</span>
+                </a>
+            </li>
+            <li class="menu-item active" data-section="settings">
+                <a href="settings.html">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div class="sidebar-footer">
+            <div class="admin-profile">
+                <img src="../assets/admin.png" alt="Admin" class="profile-img">
+                <div class="profile-info">
+                    <span class="name">Admin User</span>
+                    <span class="role">System Administrator</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title gradient-text">
+                    <i class="fas fa-cog"></i>
+                    CVSU System Settings
+                </h1>
+            </div>
+            <div class="header-right">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search settings...">
+                </div>
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">5</span>
+                </button>
+                <div class="user-menu">
+                    <img src="../assets/admin.png" alt="Admin" class="user-avatar">
+                    <span class="user-name">Admin</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <div class="content-area">
+            <div class="section-header">
+                <h2>System Settings</h2>
+            </div>
+
+            <div class="settings-grid">
+                <div class="settings-card">
+                    <div class="settings-header">
+                        <h3>System Configuration</h3>
+                    </div>
+                    <div class="settings-content">
+                        <div class="setting-item">
+                            <label>System Name</label>
+                            <input type="text" value="CVSU Key System" class="setting-input">
+                        </div>
+                        <div class="setting-item">
+                            <label>Default Currency</label>
+                            <select class="setting-select">
+                                <option>PHP (₱)</option>
+                                <option>USD ($)</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Session Timeout (minutes)</label>
+                            <input type="number" value="30" class="setting-input">
+                        </div>
+                        <div class="setting-item">
+                            <label>Default Language</label>
+                            <select class="setting-select">
+                                <option>English</option>
+                                <option>Filipino</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-card">
+                    <div class="settings-header">
+                        <h3>Payment Settings</h3>
+                    </div>
+                    <div class="settings-content">
+                        <div class="setting-item">
+                            <label>Minimum Balance Alert</label>
+                            <input type="number" value="100" class="setting-input">
+                        </div>
+                        <div class="setting-item">
+                            <label>Maximum Daily Transaction</label>
+                            <input type="number" value="50000" class="setting-input">
+                        </div>
+                        <div class="setting-item toggle">
+                            <label>Enable Auto-Reload</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="auto-reload" checked>
+                                <label for="auto-reload"></label>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>Transaction Fee (%)</label>
+                            <input type="number" value="2.5" step="0.1" class="setting-input">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-card">
+                    <div class="settings-header">
+                        <h3>Security Settings</h3>
+                    </div>
+                    <div class="settings-content">
+                        <div class="setting-item toggle">
+                            <label>Two-Factor Authentication</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="2fa" checked>
+                                <label for="2fa"></label>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>Password Policy</label>
+                            <select class="setting-select">
+                                <option>Strong</option>
+                                <option>Medium</option>
+                                <option>Basic</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Card Block Duration (hours)</label>
+                            <input type="number" value="24" class="setting-input">
+                        </div>
+                        <div class="setting-item toggle">
+                            <label>Enable Login Notifications</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="login-notifications" checked>
+                                <label for="login-notifications"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-card">
+                    <div class="settings-header">
+                        <h3>Notification Settings</h3>
+                    </div>
+                    <div class="settings-content">
+                        <div class="setting-item toggle">
+                            <label>Email Notifications</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="email-notif" checked>
+                                <label for="email-notif"></label>
+                            </div>
+                        </div>
+                        <div class="setting-item toggle">
+                            <label>SMS Notifications</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="sms-notif">
+                                <label for="sms-notif"></label>
+                            </div>
+                        </div>
+                        <div class="setting-item toggle">
+                            <label>System Alerts</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="system-alerts" checked>
+                                <label for="system-alerts"></label>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>Alert Email</label>
+                            <input type="email" value="admin@cvsu.edu.ph" class="setting-input">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-card">
+                    <div class="settings-header">
+                        <h3>Backup & Maintenance</h3>
+                    </div>
+                    <div class="settings-content">
+                        <div class="setting-item">
+                            <label>Auto Backup Schedule</label>
+                            <select class="setting-select">
+                                <option>Daily</option>
+                                <option>Weekly</option>
+                                <option>Monthly</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Backup Retention (days)</label>
+                            <input type="number" value="30" class="setting-input">
+                        </div>
+                        <div class="setting-item">
+                            <label>Maintenance Window</label>
+                            <select class="setting-select">
+                                <option>2:00 AM - 4:00 AM</option>
+                                <option>12:00 AM - 2:00 AM</option>
+                                <option>4:00 AM - 6:00 AM</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-actions">
+                                <button class="btn-setting backup">
+                                    <i class="fas fa-download"></i>
+                                    Manual Backup
+                                </button>
+                                <button class="btn-setting maintenance">
+                                    <i class="fas fa-tools"></i>
+                                    Run Maintenance
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-card">
+                    <div class="settings-header">
+                        <h3>System Information</h3>
+                    </div>
+                    <div class="settings-content">
+                        <div class="info-item">
+                            <label>System Version</label>
+                            <span class="info-value">v2.1.0</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Database Version</label>
+                            <span class="info-value">MySQL 8.0.35</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Last Updated</label>
+                            <span class="info-value">December 1, 2025</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Server Status</label>
+                            <span class="info-value status-online">
+                                <i class="fas fa-circle"></i>
+                                Online
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-save">
+                <button class="btn-primary save-settings">
+                    <i class="fas fa-save"></i>
+                    Save Changes
+                </button>
+                <button class="btn-secondary reset-settings">
+                    <i class="fas fa-undo"></i>
+                    Reset to Default
+                </button>
+            </div>
+        </div>
+    </main>
+    <script src="../script.js"></script>
+</body>
+</html>
