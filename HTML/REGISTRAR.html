@@ -111,11 +111,11 @@
                 <div class="section-header">
                     <h2>REGISTRAR Payment Tracking</h2>
                     <div class="section-actions">
-                        <button class="btn-primary">
+                        <button class="btn-primary" id="manual-entry-btn">
                             <i class="fas fa-plus"></i>
                             Manual Entry
                         </button>
-                        <button class="btn-secondary">
+                        <button class="btn-secondary" id="generate-report-btn">
                             <i class="fas fa-download"></i>
                             Generate Report
                         </button>
@@ -150,7 +150,7 @@
                 </div>
 
                 <div class="payment-filters">
-                    <div class="filter-tabs">
+                    <div class="filter-tabs" id="payment-filter-tabs">
                         <button class="filter-tab active" data-filter="all">All Transactions</button>
                         <button class="filter-tab" data-filter="tuition">Tuition Fee</button>
                         <button class="filter-tab" data-filter="membership">Course Membership</button>
@@ -160,9 +160,9 @@
                         <button class="filter-tab" data-filter="yearbook">Yearbook</button>
                     </div>
                     <div class="date-filter">
-                        <input type="date" class="date-input" placeholder="Start Date">
-                        <input type="date" class="date-input" placeholder="End Date">
-                        <button class="btn-filter">Apply</button>
+                        <input type="date" id="filter-start-date" class="date-input" placeholder="Start Date">
+                        <input type="date" id="filter-end-date" class="date-input" placeholder="End Date">
+                        <button class="btn-filter" id="apply-date-filter">Apply</button>
                     </div>
                 </div>
 
@@ -379,6 +379,161 @@
             </section>
         </div>
     </main>
+
+    <!-- Manual Entry Modal -->
+    <div class="modal-overlay" id="manual-entry-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-file-invoice-dollar"></i> Manual Payment Entry</h3>
+                <button class="modal-close" id="close-entry-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="manual-entry-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="entry-student-id">Student Number <span class="required">*</span></label>
+                            <input type="text" id="entry-student-id" class="form-input" placeholder="e.g., 202310001" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="entry-student-name">Student Name</label>
+                            <input type="text" id="entry-student-name" class="form-input" placeholder="Auto-filled" readonly>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="entry-payment-type">Payment Type <span class="required">*</span></label>
+                            <select id="entry-payment-type" class="form-input" required>
+                                <option value="">Select Payment Type</option>
+                                <option value="Tuition Fee">Tuition Fee</option>
+                                <option value="Course Membership">Course Membership</option>
+                                <option value="TOR">TOR (Transcript of Records)</option>
+                                <option value="Diploma">Diploma</option>
+                                <option value="Certification">Certification</option>
+                                <option value="Yearbook">Yearbook</option>
+                                <option value="Laboratory Fee">Laboratory Fee</option>
+                                <option value="Library Fee">Library Fee</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="entry-amount">Amount <span class="required">*</span></label>
+                            <input type="number" id="entry-amount" class="form-input" placeholder="0.00" min="0" step="0.01" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="entry-payment-method">Payment Method</label>
+                            <select id="entry-payment-method" class="form-input">
+                                <option value="NFC Card">NFC Card</option>
+                                <option value="Cash">Cash</option>
+                                <option value="GCash">GCash</option>
+                                <option value="Bank Transfer">Bank Transfer</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="entry-status">Status</label>
+                            <select id="entry-status" class="form-input">
+                                <option value="Completed">Completed</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Failed">Failed</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="entry-reference">Reference Number</label>
+                            <input type="text" id="entry-reference" class="form-input" placeholder="Optional">
+                        </div>
+                        <div class="form-group">
+                            <label for="entry-date">Payment Date</label>
+                            <input type="date" id="entry-date" class="form-input">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="entry-notes">Notes (Optional)</label>
+                            <textarea id="entry-notes" class="form-input" rows="2" placeholder="Additional notes..."></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancel-entry-modal">Cancel</button>
+                <button class="btn-primary" id="submit-entry">
+                    <i class="fas fa-save"></i>
+                    Save Payment
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Receipt Modal -->
+    <div class="modal-overlay" id="view-receipt-modal">
+        <div class="modal view-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-receipt"></i> Payment Receipt</h3>
+                <button class="modal-close" id="close-receipt-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="receipt-header">
+                    <img src="../assets/Cavite_State_University_(CvSU).png" alt="CvSU Logo" class="receipt-logo">
+                    <div class="receipt-title">
+                        <h2>Cavite State University</h2>
+                        <p>Official Payment Receipt</p>
+                    </div>
+                </div>
+                <div class="receipt-details">
+                    <div class="receipt-row">
+                        <span class="receipt-label">Transaction ID:</span>
+                        <span id="receipt-txn-id" class="receipt-value">-</span>
+                    </div>
+                    <div class="receipt-row">
+                        <span class="receipt-label">Date:</span>
+                        <span id="receipt-date" class="receipt-value">-</span>
+                    </div>
+                    <div class="receipt-row">
+                        <span class="receipt-label">Student:</span>
+                        <span id="receipt-student" class="receipt-value">-</span>
+                    </div>
+                    <div class="receipt-row">
+                        <span class="receipt-label">Student ID:</span>
+                        <span id="receipt-student-id" class="receipt-value">-</span>
+                    </div>
+                    <div class="receipt-row">
+                        <span class="receipt-label">Payment Type:</span>
+                        <span id="receipt-type" class="receipt-value">-</span>
+                    </div>
+                    <div class="receipt-row">
+                        <span class="receipt-label">Payment Method:</span>
+                        <span id="receipt-method" class="receipt-value">-</span>
+                    </div>
+                    <div class="receipt-row total">
+                        <span class="receipt-label">Amount Paid:</span>
+                        <span id="receipt-amount" class="receipt-value">-</span>
+                    </div>
+                    <div class="receipt-row">
+                        <span class="receipt-label">Status:</span>
+                        <span id="receipt-status" class="receipt-value">-</span>
+                    </div>
+                </div>
+                <div class="receipt-footer">
+                    <p>Thank you for your payment!</p>
+                    <p class="receipt-note">This is a computer-generated receipt.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="close-receipt-btn">Close</button>
+                <button class="btn-primary" id="print-receipt-btn">
+                    <i class="fas fa-print"></i>
+                    Print Receipt
+                </button>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Basic JavaScript for responsive sidebar

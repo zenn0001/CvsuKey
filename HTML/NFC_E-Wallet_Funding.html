@@ -97,13 +97,10 @@
                 </div>
                 <button class="notification-btn">
                     <i class="fas fa-bell"></i>
-                    <span class="notification-badge">5</span>
                 </button>
-                <div class="user-menu">
-                    <img src="../assets/admin.png" alt="Admin" class="user-avatar">
-                    <span class="user-name">Admin</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
+                <button class="user-menu-btn">
+                    <i class="fas fa-user"></i>
+                </button>
             </div>
         </header>
 
@@ -111,16 +108,6 @@
         <div class="content-area">
             <div class="section-header">
                 <h2>NFC E-Wallet Funding</h2>
-                <div class="section-actions">
-                    <button class="btn-primary">
-                        <i class="fas fa-plus"></i>
-                        Add Funds
-                    </button>
-                    <button class="btn-secondary">
-                        <i class="fas fa-download"></i>
-                        Export Report
-                    </button>
-                </div>
             </div>
 
             <div class="funding-overview">
@@ -363,84 +350,142 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <div class="card-id-info">
-                                    <i class="fas fa-id-card card-icon"></i>
-                                    <span>CVSU-002101</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="student-info">
-                                    <img src="../assets/student avatar.jpg" alt="Student" class="student-avatar">
-                                    <div>
-                                        <span class="student-name">Yuji Lowe</span>
-                                        <span class="student-course">BSIT 3A</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>Jan 15, 2025</td>
-                            <td class="balance positive">₱1,250.00</td>
-                            <td>2 hours ago</td>
-                            <td><span class="card-status active">Active</span></td>
-                            <td>
-                                <div class="card-actions">
-                                    <button class="btn-card-action view" title="View Details">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                    <button class="btn-card-action block" title="Block Card">
-                                        <i class="fas fa-ban"></i>
-                                    </button>
-                                    <button class="btn-card-action reload" title="Reload Balance">
-                                        <i class="fas fa-plus-circle"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="card-id-info">
-                                    <i class="fas fa-id-card card-icon"></i>
-                                    <span>CVSU-002102</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="student-info">
-                                    <img src="../assets/student avatar.jpg" alt="Student" class="student-avatar">
-                                    <div>
-                                        <span class="student-name">Prince Carl Nagtalon</span>
-                                        <span class="student-course">BSCS 2B</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>Feb 3, 2025</td>
-                            <td class="balance positive">₱890.50</td>
-                            <td>45 minutes ago</td>
-                            <td><span class="card-status active">Active</span></td>
-                            <td>
-                                <div class="card-actions">
-                                    <button class="btn-card-action view" title="View Details">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                    <button class="btn-card-action block" title="Block Card">
-                                        <i class="fas fa-ban"></i>
-                                    </button>
-                                    <button class="btn-card-action reload" title="Reload Balance">
-                                        <i class="fas fa-plus-circle"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                        <!-- Populated dynamically by script.js -->
                     </tbody>
                 </table>
             </div>
             
-            <button class="btn-view-more">
+            <button class="btn-view-more" id="btn-view-more-cards">
                 <i class="fas fa-chevron-down"></i>
                 View More
             </button>
         </div>
     </main>
+
+    <!-- View Transaction Details Modal -->
+    <div class="modal-overlay" id="view-transaction-modal">
+        <div class="modal view-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-receipt"></i> Transaction Details</h3>
+                <button class="modal-close" id="close-txn-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="transaction-summary">
+                    <div class="txn-amount-display">
+                        <span class="txn-label">Amount</span>
+                        <span id="view-txn-amount" class="txn-amount">₱0.00</span>
+                    </div>
+                    <span id="view-txn-status" class="funding-status completed">Completed</span>
+                </div>
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <label><i class="fas fa-hashtag"></i> Transaction ID</label>
+                        <span id="view-txn-id">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label><i class="fas fa-calendar"></i> Date & Time</label>
+                        <span id="view-txn-date">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label><i class="fas fa-user"></i> Student Name</label>
+                        <span id="view-txn-student">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label><i class="fas fa-id-badge"></i> Student Number</label>
+                        <span id="view-txn-student-number">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label><i class="fas fa-credit-card"></i> Payment Method</label>
+                        <span id="view-txn-method">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label><i class="fas fa-barcode"></i> Reference Number</label>
+                        <span id="view-txn-reference">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label><i class="fas fa-exchange-alt"></i> Transaction Type</label>
+                        <span id="view-txn-type">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label><i class="fas fa-sticky-note"></i> Description</label>
+                        <span id="view-txn-description">-</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="close-txn-modal-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Card Details Modal -->
+    <div class="modal-overlay" id="view-card-modal">
+        <div class="modal view-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-id-card"></i> Card Details</h3>
+                <button class="modal-close" id="close-card-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card-visual">
+                    <div class="nfc-card-preview">
+                        <div class="card-chip"></div>
+                        <div class="card-uid-display" id="view-card-uid-display">04A1B2C3D4E5F6</div>
+                        <div class="card-holder" id="view-card-holder">Student Name</div>
+                        <div class="card-type-badge" id="view-card-type-badge">Full Access</div>
+                    </div>
+                </div>
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <label><i class="fas fa-fingerprint"></i> Card UID</label>
+                        <span id="view-card-uid">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label><i class="fas fa-user"></i> Card Holder</label>
+                        <span id="view-card-student">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label><i class="fas fa-id-badge"></i> Student Number</label>
+                        <span id="view-card-student-number">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label><i class="fas fa-wallet"></i> Balance</label>
+                        <span id="view-card-balance" class="balance-highlight">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label><i class="fas fa-shield-alt"></i> Card Type</label>
+                        <span id="view-card-type">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label><i class="fas fa-toggle-on"></i> Status</label>
+                        <span id="view-card-status">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label><i class="fas fa-door-open"></i> Room Access</label>
+                        <span id="view-card-room-access">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label><i class="fas fa-money-bill"></i> Payment Access</label>
+                        <span id="view-card-payment-access">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label><i class="fas fa-calendar-plus"></i> Issued Date</label>
+                        <span id="view-card-issued">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label><i class="fas fa-clock"></i> Last Used</label>
+                        <span id="view-card-last-used">-</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="close-card-modal-btn">Close</button>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Toggle payment method reference section

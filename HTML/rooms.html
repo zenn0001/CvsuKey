@@ -97,13 +97,10 @@
                 </div>
                 <button class="notification-btn">
                     <i class="fas fa-bell"></i>
-                    <span class="notification-badge">5</span>
                 </button>
-                <div class="user-menu">
-                    <img src="../assets/admin.png" alt="Admin" class="user-avatar">
-                    <span class="user-name">Admin</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
+                <button class="user-menu-btn">
+                    <i class="fas fa-user"></i>
+                </button>
             </div>
         </header>
 
@@ -112,7 +109,7 @@
             <div class="section-header">
                 <h2>Room Management</h2>
                 <div class="section-actions">
-                    <button class="btn-primary">
+                    <button class="btn-primary" id="add-room-btn">
                         <i class="fas fa-plus"></i>
                         Add Room
                     </button>
@@ -238,6 +235,139 @@
             </div>
         </div>
     </main>
+
+    <!-- Add Room Modal -->
+    <div class="modal-overlay" id="add-room-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-door-open"></i> Add New Room</h3>
+                <button class="modal-close" id="close-room-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="add-room-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="room-code">Room Code <span class="required">*</span></label>
+                            <input type="text" id="room-code" class="form-input" placeholder="e.g., CL-101" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="room-name">Room Name <span class="required">*</span></label>
+                            <input type="text" id="room-name" class="form-input" placeholder="e.g., Computer Lab 1" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="room-type">Room Type</label>
+                            <select id="room-type" class="form-input">
+                                <option value="Classroom">Classroom</option>
+                                <option value="Laboratory">Laboratory</option>
+                                <option value="Lecture Hall">Lecture Hall</option>
+                                <option value="Office">Office</option>
+                                <option value="Conference Room">Conference Room</option>
+                                <option value="Library">Library</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="room-building">Building</label>
+                            <select id="room-building" class="form-input">
+                                <option value="Main Building">Main Building</option>
+                                <option value="Old Building">Old Building</option>
+                                <option value="New Building">New Building</option>
+                                <option value="Science Building">Science Building</option>
+                                <option value="Engineering Building">Engineering Building</option>
+                                <option value="Admin Building">Admin Building</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="room-capacity">Capacity</label>
+                            <input type="number" id="room-capacity" class="form-input" placeholder="e.g., 50" value="50" min="1" max="500">
+                        </div>
+                        <div class="form-group">
+                            <label for="room-status">Initial Status</label>
+                            <select id="room-status" class="form-input">
+                                <option value="Available">Available</option>
+                                <option value="Occupied">Occupied</option>
+                                <option value="Maintenance">Maintenance</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="room-description">Description (Optional)</label>
+                            <textarea id="room-description" class="form-input" rows="3" placeholder="Enter room description..."></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancel-room-modal">Cancel</button>
+                <button class="btn-primary" id="submit-room">
+                    <i class="fas fa-plus"></i>
+                    Add Room
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Room Modal -->
+    <div class="modal-overlay" id="view-room-modal">
+        <div class="modal view-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-door-open"></i> Room Details</h3>
+                <button class="modal-close" id="close-view-room-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="room-visual">
+                    <div class="room-icon-large">
+                        <i class="fas fa-door-open"></i>
+                    </div>
+                    <div class="room-title">
+                        <h2 id="view-room-code">-</h2>
+                        <span id="view-room-status" class="device-status available">Available</span>
+                    </div>
+                </div>
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <label><i class="fas fa-tag"></i> Room Name</label>
+                        <span id="view-room-name">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label><i class="fas fa-layer-group"></i> Room Type</label>
+                        <span id="view-room-type">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label><i class="fas fa-building"></i> Building</label>
+                        <span id="view-room-building">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label><i class="fas fa-users"></i> Capacity</label>
+                        <span id="view-room-capacity">-</span>
+                    </div>
+                </div>
+                <div class="room-access-section">
+                    <h4><i class="fas fa-history"></i> Recent Access Logs</h4>
+                    <div class="access-logs-list" id="room-access-logs">
+                        <p class="no-logs">No recent access logs</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="close-view-room-btn">Close</button>
+                <button class="btn-primary" id="edit-room-btn">
+                    <i class="fas fa-edit"></i>
+                    Edit Room
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script src="../script.js"></script>
 </body>
 </html>

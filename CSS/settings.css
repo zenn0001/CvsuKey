@@ -262,58 +262,25 @@ body {
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
-.notification-btn {
-    position: relative;
-    background: none;
+.notification-btn,
+.user-menu-btn {
+    width: 40px;
+    height: 40px;
     border: none;
-    padding: 0.75rem;
-    color: var(--text-secondary);
-    cursor: pointer;
     border-radius: 0.5rem;
-    transition: all 0.2s ease;
-}
-
-.notification-btn:hover {
-    background: var(--secondary-color);
-    color: var(--primary-color);
-}
-
-.notification-badge {
-    position: absolute;
-    top: 0.25rem;
-    right: 0.25rem;
-    background: var(--danger-color);
-    color: white;
-    font-size: 0.75rem;
-    padding: 0.125rem 0.375rem;
-    border-radius: 0.75rem;
-    min-width: 1.25rem;
-    text-align: center;
-}
-
-.user-menu {
+    cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
+    justify-content: center;
     transition: all 0.2s ease;
-}
-
-.user-menu:hover {
     background: var(--secondary-color);
+    color: var(--text-secondary);
 }
 
-.user-avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-}
-
-.user-name {
-    font-weight: 600;
-    color: var(--text-primary);
+.notification-btn:hover,
+.user-menu-btn:hover {
+    background: var(--primary-color);
+    color: white;
 }
 
 /* Content Area */

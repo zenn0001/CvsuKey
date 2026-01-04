@@ -97,13 +97,10 @@
                 </div>
                 <button class="notification-btn">
                     <i class="fas fa-bell"></i>
-                    <span class="notification-badge">5</span>
                 </button>
-                <div class="user-menu">
-                    <img src="../assets/admin.png" alt="Admin" class="user-avatar">
-                    <span class="user-name">Admin</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
+                <button class="user-menu-btn">
+                    <i class="fas fa-user"></i>
+                </button>
             </div>
         </header>
 
@@ -112,13 +109,9 @@
             <div class="section-header">
                 <h2>Student Tracker</h2>
                 <div class="section-actions">
-                    <button class="btn-primary">
+                    <button class="btn-primary" id="add-student-btn">
                         <i class="fas fa-plus"></i>
                         Add Student
-                    </button>
-                    <button class="btn-secondary">
-                        <i class="fas fa-download"></i>
-                        Export Data
                     </button>
                 </div>
             </div>
@@ -361,6 +354,133 @@
             </div>
         </div>
     </main>
+
+    <!-- Add Student Modal -->
+    <div class="modal-overlay" id="add-student-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-plus"></i> Add New Student</h3>
+                <button class="modal-close" id="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="add-student-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="student-number">Student Number <span class="required">*</span></label>
+                            <input type="text" id="student-number" class="form-input" placeholder="e.g., 202310004" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="first-name">First Name <span class="required">*</span></label>
+                            <input type="text" id="first-name" class="form-input" placeholder="Enter first name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="middle-name">Middle Name</label>
+                            <input type="text" id="middle-name" class="form-input" placeholder="Enter middle name">
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last Name <span class="required">*</span></label>
+                            <input type="text" id="last-name" class="form-input" placeholder="Enter last name" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-input" placeholder="student@cvsu.edu.ph">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-input" placeholder="09XX XXX XXXX">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="course">Course</label>
+                            <select id="course" class="form-input">
+                                <option value="">Select Course</option>
+                                <option value="BSIT">BSIT - Information Technology</option>
+                                <option value="BSCS">BSCS - Computer Science</option>
+                                <option value="BSIS">BSIS - Information Systems</option>
+                                <option value="BSCE">BSCE - Civil Engineering</option>
+                                <option value="BSEE">BSEE - Electrical Engineering</option>
+                                <option value="BSA">BSA - Accountancy</option>
+                                <option value="BSBA">BSBA - Business Administration</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="section">Section</label>
+                            <input type="text" id="section" class="form-input" placeholder="e.g., 3A">
+                        </div>
+                        <div class="form-group">
+                            <label for="year-level">Year Level</label>
+                            <select id="year-level" class="form-input">
+                                <option value="">Select Year</option>
+                                <option value="1">1st Year</option>
+                                <option value="2">2nd Year</option>
+                                <option value="3">3rd Year</option>
+                                <option value="4">4th Year</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="has-nfc">NFC ID Card</label>
+                            <select id="has-nfc" class="form-input">
+                                <option value="no">No Card Assigned</option>
+                                <option value="yes">Has NFC Card</option>
+                            </select>
+                        </div>
+                        <div class="form-group nfc-uid-group" id="nfc-uid-group" style="display: none;">
+                            <label for="nfc-uid">NFC Card UID <span class="required">*</span></label>
+                            <input type="text" id="nfc-uid" class="form-input" placeholder="e.g., 04A1B2C3D4E5F6">
+                        </div>
+                        <div class="form-group nfc-uid-group" id="card-type-group" style="display: none;">
+                            <label for="card-type">Card Access Type</label>
+                            <select id="card-type" class="form-input">
+                                <option value="Full Access">Full Access (Room + Payment)</option>
+                                <option value="Limited Access">Limited Access (Room Only)</option>
+                                <option value="No Access">No Access</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row nfc-options-row" id="nfc-options-row" style="display: none;">
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="has-room-access" checked>
+                                <span class="checkmark"></span>
+                                Room Access
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="has-payment-access" checked>
+                                <span class="checkmark"></span>
+                                Payment Access
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-status">Card Status</label>
+                            <select id="card-status" class="form-input">
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                                <option value="Blocked">Blocked</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancel-modal">Cancel</button>
+                <button class="btn-primary" id="submit-student">
+                    <i class="fas fa-save"></i> Save Student
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Update current date and time for Present Today card
         function updateDateTime() {
@@ -385,6 +505,88 @@
         updateDateTime();
         setInterval(updateDateTime, 60000);
     </script>
+
+    <!-- View Student Details Modal -->
+    <div class="modal-overlay" id="view-student-modal">
+        <div class="modal view-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-user"></i> Student Details</h3>
+                <button class="modal-close" id="close-view-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="student-profile-section">
+                    <div class="profile-avatar-large">
+                        <img id="view-student-avatar" src="../assets/student avatar.jpg" alt="Student">
+                    </div>
+                    <div class="profile-name-section">
+                        <h2 id="view-student-name">-</h2>
+                        <p id="view-student-course">-</p>
+                    </div>
+                </div>
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <label><i class="fas fa-id-badge"></i> Student Number</label>
+                        <span id="view-student-number">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label><i class="fas fa-envelope"></i> Email</label>
+                        <span id="view-student-email">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label><i class="fas fa-phone"></i> Phone</label>
+                        <span id="view-student-phone">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label><i class="fas fa-venus-mars"></i> Gender</label>
+                        <span id="view-student-gender">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label><i class="fas fa-calendar-alt"></i> Year Level</label>
+                        <span id="view-student-year">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <label><i class="fas fa-users"></i> Section</label>
+                        <span id="view-student-section">-</span>
+                    </div>
+                </div>
+                <div class="nfc-card-section">
+                    <h4><i class="fas fa-id-card"></i> NFC Card Information</h4>
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <label>Card UID</label>
+                            <span id="view-nfc-uid">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>Card Type</label>
+                            <span id="view-card-type">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>Card Status</label>
+                            <span id="view-card-status">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>Wallet Balance</label>
+                            <span id="view-wallet-balance" class="balance-highlight">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>Room Access</label>
+                            <span id="view-room-access">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>Payment Access</label>
+                            <span id="view-payment-access">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="close-view-modal-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
     <script src="../script.js"></script>
 </body>
 </html>
